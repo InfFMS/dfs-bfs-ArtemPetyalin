@@ -60,3 +60,42 @@
 # 5: [5]
 # 6: [6]
 # 7: [7]
+
+A = input().split()
+N = A[0]
+M = A[1]
+graph = {}
+
+for i in range(int(M)):
+    a = input().split()
+    u = a[0]
+    v = a[1]
+    if 
+    graph[u].append(v)
+
+unvs = []
+def breadth_search(graph, loc):
+    unvs.append(loc)
+
+    for i in graph[loc]:
+
+        for j in unvs:
+            if j == i:
+                break
+
+        unvs.append(i)
+
+    for i in graph[loc]:
+        breadth_search(graph, i)
+
+path = input().split()
+breadth_search(graph, path[0])
+
+for elem in unvs:
+
+    if elem == path[1]:
+        print('YES')
+        break
+
+    if elem == unvs[-1]:
+        print('NO')

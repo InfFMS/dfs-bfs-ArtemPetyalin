@@ -20,3 +20,21 @@
 #
 # Пример выходных данных
 # [1, 2, 4, 3, 5]  # Возможен и другой порядок, зависящий от реализации DFS
+
+graph = {1:[2], 2:[3, 5], 3:[4, 6], 4:[5, 6], 5:[2, 4], 6:[3, 4]}
+answer = []
+start = int(input('start '))
+
+def depth_serach(graph, loc):
+
+    if loc not in answer:
+        answer.append(loc)
+
+        for branch in graph[loc]:
+            depth_serach(graph, branch)
+
+depth_serach(graph, start)
+print(answer)
+
+
+
