@@ -64,38 +64,58 @@
 A = input().split()
 N = A[0]
 M = A[1]
-graph = {}
+graph = {i:[] for i in range(1, int(N) + 1)}
+list_u = []
+list_v = []
 
 for i in range(int(M)):
     a = input().split()
-    u = a[0]
-    v = a[1]
-    if 
-    graph[u].append(v)
+    graph[int(a[0])].append(int(a[1]))
+    graph[int(a[1])].append(int(a[0]))
+print(graph)
 
-unvs = []
+vis = []
 def breadth_search(graph, loc):
+    unvs = []
     unvs.append(loc)
 
-    for i in graph[loc]:
+    while unvs:
+        next = unvs[0]
+        unvs.pop(0)
 
-        for j in unvs:
-            if j == i:
-                break
+        if next not in vis:
+            vis.append(next)
 
-        unvs.append(i)
+            for i in graph[next]:
 
-    for i in graph[loc]:
-        breadth_search(graph, i)
+                if i not in vis:
+                    unvs.append(i)
 
 path = input().split()
-breadth_search(graph, path[0])
+breadth_search(graph, int(path[0]))
 
-for elem in unvs:
+for elem in vis:
 
-    if elem == path[1]:
+    if elem == int(path[1]):
         print('YES')
         break
 
-    if elem == unvs[-1]:
+    if elem == int(vis[-1]):
         print('NO')
+
+order = []
+def depth_serach(graph, loc):
+
+    if loc not in order:
+        order.append(loc)
+
+        for branch in graph[loc]:
+            depth_serach(graph, branch)
+
+depth_serach(graph, 1)
+
+left = list(graph.keys())
+
+for i in order:
+    left.remove(i)
+
