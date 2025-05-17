@@ -60,3 +60,60 @@
 # 5: [5]
 # 6: [6]
 # 7: [7]
+
+A = input().split()
+N = A[0]
+M = A[1]
+graph = {i:[] for i in range(1, int(N) + 1)}
+list_u = []
+list_v = []
+
+for i in range(int(M)):
+    a = input().split()
+    graph[int(a[0])].append(int(a[1]))
+    graph[int(a[1])].append(int(a[0]))
+print(graph)
+
+vis = []
+def breadth_search(graph, loc):
+    unvs = []
+    unvs.append(loc)
+
+    while unvs:
+        next = unvs[0]
+        unvs.pop(0)
+
+        if next not in vis:
+            vis.append(next)
+
+            for i in graph[next]:
+
+                if i not in vis:
+                    unvs.append(i)
+
+path = input().split()
+breadth_search(graph, int(path[0]))
+
+for elem in vis:
+
+    if elem == int(path[1]):
+        print('YES')
+        break
+
+    if elem == int(vis[-1]):
+        print('NO')
+
+order = []
+def depth_serach(graph, loc):
+
+    if loc not in order:
+        order.append(loc)
+
+        for branch in graph[loc]:
+            depth_serach(graph, branch)
+
+depth_serach(graph, 1)
+
+#for i in range(int(M)):
+
+

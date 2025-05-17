@@ -16,3 +16,28 @@ graf = {"A" : ["B", "C"],
 # 5. Обрабатываем D → результат [A,B,D]
 # 6. Обрабатываем C → результат [A,B,D,C]
 # 7. Все вершины обработаны → сортировка завершена
+
+container = []
+
+for i in list(graf.keys()):
+
+        if len(graf[i]) == 0:
+                container.append(i)
+
+answer = ''
+i = 0
+
+while i < len(container):
+        answer = answer + ' ' + str(container[i])
+
+        for j in list(graf.keys()):
+
+                if container[i] in graf[j]:
+                        graf[j].remove(container[i])
+
+                if len(graf[j]) == 0 and j not in container:
+                        container.append(j)
+
+        i += 1
+
+print(answer[1:])
