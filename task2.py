@@ -114,8 +114,6 @@ def depth_serach(graph, loc):
 
 depth_serach(graph, 1)
 
-left = list(graph.keys())
+#for i in range(int(M)):
 
-for i in order:
-    left.remove(i)
 
